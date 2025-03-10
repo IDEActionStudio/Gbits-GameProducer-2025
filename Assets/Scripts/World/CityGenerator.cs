@@ -9,10 +9,14 @@ public class CityGenerator : MonoBehaviour
     public GameObject crossRoadPrefab;    // 十字路口
     public GameObject[] buildingPrefabs;  // 楼房模型
     public GameObject[] carPrefabs;       // 汽车模型
-    public GameObject[] weedPrefabs;         // 杂草模型
+    public GameObject[] propPrefabs;         // 小物件模型
+    public GameObject[] weedPrefabs;//杂草模型
+    public GameObject[] flowerPrefabs;//花朵模型
     public float buildingSpacing = 25f;   // 楼房间隔
     public int carsPerRoad = 2;           // 每条道路上生成的汽车数量
-    public float weedDensity = 1f;      // 杂草生成密度（0 到 1）
+    public float propDensity = 1f;      // 小物件生成密度（0 到 1）
+    public float weedDensity = 1f;//杂草生成密度
+    public float flowerDensity = 1f;//花朵生成密度
 
     private List<GameObject> roads = new List<GameObject>(); // 存储生成的道路
     private List<GameObject> cars = new List<GameObject>();  // 存储生成的汽车
@@ -36,7 +40,9 @@ public class CityGenerator : MonoBehaviour
         GenerateRoad(roadGrid);
         GenerateBuildings(roadGrid, roads.ToArray());
         GenerateCars(roadGrid);
+        GenerateProps(roadGrid);
         GenerateWeeds(roadGrid);
+        GenerateFlowers(roadGrid);
     }
 
     void GenerateRoad(int[,] roadGrid)
@@ -249,12 +255,13 @@ public class CityGenerator : MonoBehaviour
     
     
     
-    void GenerateWeeds(int[,] roadGrid)
+    void GenerateProps(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
         int height = roadGrid.GetLength(1);
-
+        
         Vector3 roadSize = GetModelSize(straightRoadPrefab); // 获取道路模型的尺寸
+        
         float roadWidth = roadSize.x; // 道路的宽度
         float roadLength = roadSize.z; // 道路的长度
 
@@ -265,23 +272,95 @@ public class CityGenerator : MonoBehaviour
                 if (roadGrid[x, y] == 0) // 如果是可建区域
                 {
                     // 根据杂草生成密度随机生成杂草
-                    if (Random.value < weedDensity)
+                    if (Random.value < propDensity)
                     {
                         // 随机选择一个杂草预制体
-                        GameObject weedPrefab = weedPrefabs[Random.Range(0, weedPrefabs.Length)];
+                        GameObject propPrefab = propPrefabs[Random.Range(0, propPrefabs.Length)];
 
                         // 随机生成杂草的位置
-                        Vector3 weedPosition = new Vector3(
+                        Vector3 propPosition = new Vector3(
                             x * roadWidth + Random.Range(-roadWidth / 2f, roadWidth / 2f),
                             0,
                             y * roadLength + Random.Range(-roadLength / 2f, roadLength / 2f)
                         );
 
                         // 随机生成杂草的朝向
-                        Quaternion weedRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                        Quaternion propRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
                         // 生成杂草
-                        GameObject weed = Instantiate(weedPrefab, weedPosition, weedRotation);
+                        GameObject prop = Instantiate(propPrefab, propPosition, propRotation);
+                    }
+                }
+            }
+        }
+    }
+
+    void GenerateWeeds(int[,] roadGrid)
+    {
+        int width = roadGrid.GetLength(0);
+        int height = roadGrid.GetLength(1);
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (roadGrid[x, y] == 0|| roadGrid[x, y] == 1)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        // 根据杂草生成密度随机生成杂草
+                        if (Random.value < weedDensity)
+                        {
+                            // 随机选择一个杂草预制体
+                            GameObject weedPrefab = weedPrefabs[Random.Range(0, weedPrefabs.Length)];
+
+                            // 随机生成杂草的位置
+                            Vector3 weedPosition = new Vector3(
+                                Random.Range(0, 180),
+                                0,
+                                Random.Range(0, 180)
+                            );
+
+                            // 随机生成杂草的朝向
+                            Quaternion weedRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                            // 生成杂草
+                            GameObject weed = Instantiate(weedPrefab, weedPosition, weedRotation);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    void GenerateFlowers(int[,] roadGrid)
+    {
+        int width = roadGrid.GetLength(0);
+        int height = roadGrid.GetLength(1);
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (roadGrid[x, y] == 0|| roadGrid[x, y] == 1)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        // 根据杂草生成密度随机生成杂草
+                        if (Random.value < flowerDensity)
+                        {
+                            // 随机选择一个杂草预制体
+                            GameObject flowerPrefab = flowerPrefabs[Random.Range(0, flowerPrefabs.Length)];
+
+                            // 随机生成杂草的位置
+                            Vector3 flowerPosition = new Vector3(
+                                Random.Range(0, 180),
+                                0,
+                                Random.Range(0, 180)
+                            );
+
+                            // 随机生成杂草的朝向
+                            Quaternion flowerRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                            // 生成杂草
+                            GameObject flower = Instantiate(flowerPrefab, flowerPosition, flowerRotation);
+                        }
                     }
                 }
             }

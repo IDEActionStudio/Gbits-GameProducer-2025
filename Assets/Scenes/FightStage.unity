@@ -7252,7 +7252,6 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
-  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -7337,29 +7336,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &705507996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705507993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 3
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 0
 --- !u!4 &709265706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 22106dc63dce41746ad234a91af2d657, type: 3}
@@ -9141,18 +9117,33 @@ MonoBehaviour:
   - {fileID: 100000, guid: cffe1734bc43bcb47b6433ebca05c04c, type: 3}
   - {fileID: 100000, guid: e218686c5655fad46a02ebfb004972ee, type: 3}
   - {fileID: 100000, guid: 993432d7809c9bf489a5a96006618fef, type: 3}
-  weedPrefabs:
-  - {fileID: 100000, guid: 0ee6d569ec3227e40888e8151b331e0f, type: 3}
-  - {fileID: 100000, guid: 800befcc62026a34693972077c91698d, type: 3}
-  - {fileID: 100000, guid: dac1a631b172e66469fb09e9987bcf57, type: 3}
-  - {fileID: 100000, guid: 9ec25066ec33fa84d9227e27c5f5a8a0, type: 3}
+  propPrefabs:
   - {fileID: 100000, guid: b82e76f4092b7d24aaeecddf36fe8d3b, type: 3}
   - {fileID: 100000, guid: 31bbda51eeab02f44a8e92a7da2f5ff8, type: 3}
   - {fileID: 100000, guid: f75f232634166cc459a69e7fd7a30880, type: 3}
   - {fileID: 100000, guid: 47ea3e3caeb3c2845bbd9339bdc7a282, type: 3}
+  - {fileID: 100000, guid: 0ee6d569ec3227e40888e8151b331e0f, type: 3}
+  - {fileID: 100000, guid: 800befcc62026a34693972077c91698d, type: 3}
+  - {fileID: 100000, guid: dac1a631b172e66469fb09e9987bcf57, type: 3}
+  - {fileID: 100000, guid: 9ec25066ec33fa84d9227e27c5f5a8a0, type: 3}
+  weedPrefabs:
+  - {fileID: 5098166735730487887, guid: e1911aeff5cba5f47861e9584df91e0e, type: 3}
+  - {fileID: 4025141361983464341, guid: 28d66e7e8dab6da44af849ea5753aa44, type: 3}
+  - {fileID: 4992434099539113192, guid: d1278bde9795dd444a561ac91d01c74d, type: 3}
+  - {fileID: 2490277158419471808, guid: 6fdc0fb98b24c0444b5457aad7f9c76c, type: 3}
+  - {fileID: 5103869435317970775, guid: 0aa5aec3e867e104c8e0b8d6529d7397, type: 3}
+  - {fileID: 4355197091694618660, guid: 2aa93eb3d14fd5149b199fa7eea1b141, type: 3}
+  flowerPrefabs:
+  - {fileID: 3422266734081095270, guid: 35648b328306de740a0f5eebf7fc0ad7, type: 3}
+  - {fileID: 600159831248363254, guid: 2a0b14bdb48213c41bd90ddabb79228f, type: 3}
+  - {fileID: 5474842169237121371, guid: ad2590a90ddb7124580f34e40a145c56, type: 3}
+  - {fileID: 1099895102284731477, guid: 593f7b6cf431cd443862b8028e876524, type: 3}
+  - {fileID: 2463035111101850837, guid: d2bc2e2ff5d0aaa4dabd4e11a049fe67, type: 3}
   buildingSpacing: 25
   carsPerRoad: 2
+  propDensity: 1
   weedDensity: 1
+  flowerDensity: 1
 --- !u!4 &1093711554
 Transform:
   m_ObjectHideFlags: 0
@@ -9441,10 +9432,10 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1899610362}
   m_Lens:
-    FieldOfView: 60
+    FieldOfView: 40
     OrthographicSize: 10
     NearClipPlane: -40
-    FarClipPlane: 1000
+    FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -10124,7 +10115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1312983102}
   m_Layer: 0
-  m_Name: '@rain'
+  m_Name: '@weather'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10769,6 +10760,66 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cc0981408e7c8db4f9f80a57938fd5e3, type: 3}
   m_PrefabInstance: {fileID: 1597586790}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1621913515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621913516}
+  - component: {fileID: 1621913517}
+  m_Layer: 0
+  m_Name: Cloud
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621913516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621913515}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1621913517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621913515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a04e78d0a394448bca15d30b4efbfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudSprites:
+  - {fileID: 105566, guid: decc2ba5add7b984aab134a07b436422, type: 3}
+  - {fileID: 171218, guid: e5a9e0b66bb8a8b47a28819231a34fc2, type: 3}
+  - {fileID: 100622, guid: 9ee1a2ad264aa2040bef16ca093d6046, type: 3}
+  - {fileID: 189866, guid: 79f3726e667d7254296b8aef52d0f074, type: 3}
+  spawnInterval: 2
+  minX: -200
+  maxX: 250
+  minY: 60
+  maxY: 100
+  minZ: -100
+  maxZ: 220
+  minScale: 0.2
+  maxScale: 0.5
+  moveSpeed: 5
+  initialCloudCount: 5
 --- !u!1001 &1654596159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16287,8 +16338,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: -40
-  far clip plane: 1000
-  field of view: 60
+  far clip plane: 5000
+  field of view: 40
   orthographic: 1
   orthographic size: 10
   m_Depth: 0
@@ -17830,6 +17881,7 @@ SceneRoots:
   - {fileID: 1654887815}
   - {fileID: 1312983102}
   - {fileID: 441114443}
+  - {fileID: 1621913516}
   - {fileID: 1567620327}
   - {fileID: 1916062881}
   - {fileID: 1120853400}

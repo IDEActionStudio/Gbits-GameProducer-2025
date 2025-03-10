@@ -21,8 +21,8 @@ public class EnemyManager : MonoBehaviour
     }
     private void SpawnEnemys() 
     {
-        for (int i = 0; i < enemys.Count; i++)//有问题
-            enemys.Add(SpawnEnemy(i));
+        for (int i = 0; i < enemyDensity; i++)
+            enemys.Add(SpawnEnemy(Random.Range(0,enemyPrefabNames.Count)));
         canSpawn = false;
     }
     private GameObject SpawnEnemy(int index)
@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
         //Instantiate(enemyPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), Quaternion.identity);
         //int index = Random.Range(0,enemyPrefabNames.Count);
         //int index = Random.Range(0, test);
-        return ObjectPool.GetInstance().GetObj(enemyPrefabNames[index], new Vector3(Random.Range(-10, 10), 0,Random.Range(-10, 10)), Quaternion.identity);
+        return ObjectPool.GetInstance().GetObj(enemyPrefabNames[index], new Vector3(Random.Range(0, 180), 0,Random.Range(0, 180)), Quaternion.identity);
         //currentEnemyCount++;  // 更新当前敌人数
     }
     public void DestoryEnemy(int score)
