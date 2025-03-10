@@ -9144,6 +9144,8 @@ MonoBehaviour:
   propDensity: 1
   weedDensity: 1
   flowerDensity: 1
+  minScale: 1
+  maxScale: 2
 --- !u!4 &1093711554
 Transform:
   m_ObjectHideFlags: 0

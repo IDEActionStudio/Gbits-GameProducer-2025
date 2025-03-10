@@ -7,6 +7,7 @@ public class CityGenerator : MonoBehaviour
     public GameObject cornerRoadPrefab;   // 拐角
     public GameObject tJunctionRoadPrefab; // 三向路口
     public GameObject crossRoadPrefab;    // 十字路口
+    
     public GameObject[] buildingPrefabs;  // 楼房模型
     public GameObject[] carPrefabs;       // 汽车模型
     public GameObject[] propPrefabs;         // 小物件模型
@@ -17,6 +18,8 @@ public class CityGenerator : MonoBehaviour
     public float propDensity = 1f;      // 小物件生成密度（0 到 1）
     public float weedDensity = 1f;//杂草生成密度
     public float flowerDensity = 1f;//花朵生成密度
+    public float minScale;
+    public float maxScale;
 
     private List<GameObject> roads = new List<GameObject>(); // 存储生成的道路
     private List<GameObject> cars = new List<GameObject>();  // 存储生成的汽车
@@ -305,7 +308,7 @@ public class CityGenerator : MonoBehaviour
             {
                 if (roadGrid[x, y] == 0|| roadGrid[x, y] == 1)
                 {
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 20; i++)
                     {
                         // 根据杂草生成密度随机生成杂草
                         if (Random.value < weedDensity)
@@ -324,6 +327,8 @@ public class CityGenerator : MonoBehaviour
                             Quaternion weedRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
                             // 生成杂草
                             GameObject weed = Instantiate(weedPrefab, weedPosition, weedRotation);
+                            float randomScale = Random.Range(minScale, maxScale);
+                            weed.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
                         }
                     }
                 }
@@ -341,7 +346,7 @@ public class CityGenerator : MonoBehaviour
             {
                 if (roadGrid[x, y] == 0|| roadGrid[x, y] == 1)
                 {
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 5; i++)
                     {
                         // 根据杂草生成密度随机生成杂草
                         if (Random.value < flowerDensity)
@@ -360,6 +365,8 @@ public class CityGenerator : MonoBehaviour
                             Quaternion flowerRotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
                             // 生成杂草
                             GameObject flower = Instantiate(flowerPrefab, flowerPosition, flowerRotation);
+                            float randomScale = Random.Range(minScale, maxScale);
+                            flower.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
                         }
                     }
                 }
