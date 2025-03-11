@@ -1,32 +1,49 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f; // 角色移动速度
+    public float moveSpeed; // 角色移动速度
+    public GameObject mouseTargetIndicator; // 鼠标落点指示器
+    private Image imageMouse;
+    
+    
     private Vector3 targetPosition; // 目标位置
-    private bool isMoving = false; // 是否正在移动
+    private bool isMoving; // 是否正在移动
+    private Vector3 mouseScreenPos;
+
+    private void Start()
+    {
+        imageMouse = mouseTargetIndicator.GetComponent<Image>();
+    }
 
     void Update()
     {
         // 检测鼠标左键点击
-        if (Input.GetMouseButtonDown(0))
-        {
             // 从摄像机发射一条射线到鼠标点击的位置
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             // 检测射线是否击中了某个物体
             if (Physics.Raycast(ray, out hit))
             {
+                // 更新鼠标落点指示器的位置
+                DrawLineToTarget(hit.point);
+                mouseScreenPos = Camera.main.WorldToScreenPoint(hit.point);
+                mouseTargetIndicator.transform.position = mouseScreenPos;
                 // 检查击中的物体是否属于CanGo图层
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("CanGo"))
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("CanGo")
+                    ||hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
-                    // 设置目标位置
-                    targetPosition = hit.point;
-                    isMoving = true;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        // 检查路径上是否有障碍物
+                        // 如果没有障碍物，设置目标位置并开始移动
+                        targetPosition = hit.point;
+                        isMoving = true;
+                    }
                 }
             }
-        }
-
         // 如果正在移动，向目标位置移动
         if (isMoving)
         {
@@ -38,6 +55,12 @@ public class PlayerController : MonoBehaviour
     {
         // 计算移动方向
         Vector3 direction = (targetPosition - transform.position).normalized;
+        if (CheckForObstacles(direction))
+        {
+            // 如果检测到障碍物，停止移动
+            isMoving = false;
+            return;
+        }
 
         // 移动角色
         transform.position += direction * moveSpeed * Time.deltaTime;
@@ -48,6 +71,80 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
     }
+    
+    bool CheckPathForObstacles(Vector3 target)
+    {
+        // 计算从当前位置到目标位置的方向和距离
+        Vector3 direction = (target - transform.position).normalized;
+        float distance = Vector3.Distance(transform.position, target);
+
+        // 合并需要检测的图层
+        int obstacleLayerMask = (1 << LayerMask.NameToLayer("Buildings")) |
+                                (1 << LayerMask.NameToLayer("Vehicles")) |
+                                (1 << LayerMask.NameToLayer("Props"));
+
+        // 发射射线，检测路径上是否有障碍物
+        if (Physics.Raycast(transform.position, direction, distance, obstacleLayerMask))
+        {
+            // 如果检测到障碍物，返回true
+            return true;
+        }
+
+        // 没有检测到障碍物，返回false
+        return false;
+    }
+
+    bool CheckForObstacles(Vector3 direction)
+    {
+        // 射线长度
+        float rayDistance = 1f;
+
+        // 合并需要检测的图层
+        int obstacleLayerMask = (1 << LayerMask.NameToLayer("Buildings")) |
+                                (1 << LayerMask.NameToLayer("Vehicles")) |
+                                (1 << LayerMask.NameToLayer("Props"));
+
+        // 发射射线，检测前方是否有障碍物
+        if (Physics.Raycast(transform.position, direction, rayDistance, obstacleLayerMask))
+        {
+            // 如果检测到障碍物，返回true
+            return true;
+        }
+
+        // 没有检测到障碍物，返回false
+        return false;
+    }
+    
+    public Image lineImage; // 拖入一个UI Image
+
+    void DrawLineToTarget(Vector3 target)
+    {
+        // 将世界坐标转换为屏幕坐标
+        Vector3 startScreenPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 endScreenPos = Camera.main.WorldToScreenPoint(target);
+
+        // 计算线的长度和角度
+        float length = Vector3.Distance(startScreenPos, endScreenPos);
+        float angle = Mathf.Atan2(endScreenPos.y - startScreenPos.y, endScreenPos.x - startScreenPos.x) * Mathf.Rad2Deg;
+
+        // 设置线的位置、旋转和大小
+        lineImage.rectTransform.position = (startScreenPos + endScreenPos) / 2;
+        lineImage.rectTransform.sizeDelta = new Vector2(length, lineImage.rectTransform.sizeDelta.y);
+        lineImage.rectTransform.rotation = Quaternion.Euler(0, 0, angle);
+
+        // 检测路径上是否有障碍物
+        if (CheckPathForObstacles(target))
+        {
+            lineImage.color = Color.red; // 线变红
+            imageMouse.color = Color.red;
+        }
+        else
+        {
+            lineImage.color = Color.white; // 线变白
+            imageMouse.color = Color.white;
+        }
+    }
+    
     /*public float moveSpeed; // 移动速度
     private CharacterController characterController;
     void Start()

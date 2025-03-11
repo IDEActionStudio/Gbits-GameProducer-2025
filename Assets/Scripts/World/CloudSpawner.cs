@@ -39,7 +39,9 @@ public class CloudSpawner : MonoBehaviour
             GameObject cloud = Instantiate(cloudSprites[Random.Range(0,cloudSprites.Length)], spawnPosition, rotation);
             // 随机设置云的大小
             float randomScale = Random.Range(minScale, maxScale);
-            cloud.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+            Vector3 targetScale = new Vector3(randomScale, randomScale, randomScale);
+            cloud.transform.localScale=Vector3.Lerp(cloud.transform.localScale, targetScale, 2 * Time.deltaTime);
+            //cloud.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
 
             // 启动云的移动
             StartCoroutine(MoveCloud(cloud));

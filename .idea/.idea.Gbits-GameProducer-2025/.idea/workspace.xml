@@ -6,8 +6,65 @@
   <component name="ChangeListManager">
     <list default="true" id="963948c6-03dd-43ca-a853-a59cae93df6c" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Gbits-GameProducer-2025/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Gbits-GameProducer-2025/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/CommonEnemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/CommonEnemy.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/FightStage.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FightStage.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/World/CityGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/World/CityGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/World/CloudSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/World/CloudSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_big_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_big_color01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_big_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_big_color02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_big_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_big_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_small_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_small_color01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_small_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_small_color02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_small_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building Sky_small_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Auto Service.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Auto Service.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Bakery.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Bakery.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Bar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Bar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Books Shop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Books Shop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Chicken Shop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Chicken Shop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Clothing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Clothing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Coffee Shop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Coffee Shop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Drug Store.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Drug Store.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Factory.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Factory.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Fast Food.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Fast Food.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Fruits  Shop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Fruits  Shop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Gas Station.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Gas Station.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Gift Shop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Gift Shop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_01_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_01_color01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_01_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_01_color02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_01_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_01_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_02_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_02_color01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_02_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_02_color02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_02_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_02_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_03_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_03_color01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_03_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_03_color02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_03_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_03_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_04_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_04_color01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_04_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_04_color02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_04_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_House_04_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Music Store.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Music Store.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Pizza.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Pizza.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Residential_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Residential_color01.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Residential_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Residential_color02.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Residential_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Residential_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Restaurant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Restaurant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Shoes Shop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Shoes Shop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Stadium.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Stadium.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Super Market.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Buildings/Building_Super Market.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Cube Tree.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Cube Tree.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Fir Tree.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Fir Tree.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Bar.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Bar.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Fence.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Fence.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Tile Small.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Tile Small.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Tile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Tile.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Tile.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_Grass Tile.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_House Floor.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Natures/Natures_House Floor.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Ambulance.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Ambulance.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Bus_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Bus_color01.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Bus_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Bus_color02.prefab" afterDir="false" />
@@ -29,6 +86,13 @@
       <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Truck_color01.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Truck_color01.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Truck_color02.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Truck_color02.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Truck_color03.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Prefab/Vehicles/Vehicle with Static Wheels/Vehicle_Truck_color03.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Textures/Crack1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Textures/Crack1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Textures/Crack2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SimplePoly City - Low Poly Assets/Textures/Crack2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +194,13 @@
       <workItem from="1741591469782" duration="4000" />
       <workItem from="1741592513437" duration="4158000" />
       <workItem from="1741598661216" duration="947000" />
+      <workItem from="1741663691557" duration="906000" />
+      <workItem from="1741666605128" duration="810000" />
+      <workItem from="1741675772264" duration="755000" />
+      <workItem from="1741679776742" duration="1521000" />
+      <workItem from="1741681775783" duration="743000" />
+      <workItem from="1741683061650" duration="2948000" />
+      <workItem from="1741691367229" duration="8006000" />
     </task>
     <servers />
   </component>

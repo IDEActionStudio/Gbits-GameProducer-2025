@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public class CityGenerator : MonoBehaviour
 {
@@ -13,11 +14,15 @@ public class CityGenerator : MonoBehaviour
     public GameObject[] propPrefabs;         // 小物件模型
     public GameObject[] weedPrefabs;//杂草模型
     public GameObject[] flowerPrefabs;//花朵模型
+    public GameObject[] crackSprites;
     public float buildingSpacing = 25f;   // 楼房间隔
     public int carsPerRoad = 2;           // 每条道路上生成的汽车数量
+    public int crackPerRoad = 1;           // 每条道路上生成的汽车数量
     public float propDensity = 1f;      // 小物件生成密度（0 到 1）
     public float weedDensity = 1f;//杂草生成密度
-    public float flowerDensity = 1f;//花朵生成密度
+    public float weedPerBlock = 40f;
+    public float flowerDensity = 1f; //花朵生成密度
+    public float flowerPerBlock = 10f;
     public float minScale;
     public float maxScale;
 
@@ -46,86 +51,87 @@ public class CityGenerator : MonoBehaviour
         GenerateProps(roadGrid);
         GenerateWeeds(roadGrid);
         GenerateFlowers(roadGrid);
+        GenerateCrack(roadGrid);
     }
 
     void GenerateRoad(int[,] roadGrid)
-{
-    int width = roadGrid.GetLength(0);
-    int height = roadGrid.GetLength(1);
-
-    Vector3 roadSize = GetModelSize(straightRoadPrefab); // 获取道路模型的尺寸
-    float roadWidth = roadSize.x; // 道路的宽度
-    float roadLength = roadSize.z; // 道路的长度
-
-    for (int x = 0; x < width; x++)
     {
-        for (int y = 0; y < height; y++)
+        int width = roadGrid.GetLength(0);
+        int height = roadGrid.GetLength(1);
+
+        Vector3 roadSize = GetModelSize(straightRoadPrefab); // 获取道路模型的尺寸
+        float roadWidth = roadSize.x; // 道路的宽度
+        float roadLength = roadSize.z; // 道路的长度
+
+        for (int x = 0; x < width; x++)
         {
-            if (roadGrid[x, y] == 1) // 如果是道路
+            for (int y = 0; y < height; y++)
             {
-                Vector3 position = new Vector3(x * roadWidth, 0, y * roadLength);
-                Quaternion rotation = Quaternion.identity;
-
-                // 检查相邻格子
-                bool hasRoadAbove = y < height - 1 && roadGrid[x, y + 1] == 1;
-                bool hasRoadBelow = y > 0 && roadGrid[x, y - 1] == 1;
-                bool hasRoadLeft = x > 0 && roadGrid[x - 1, y] == 1;
-                bool hasRoadRight = x < width - 1 && roadGrid[x + 1, y] == 1;
-
-                // 计算相邻道路数量
-                int roadCount = (hasRoadAbove ? 1 : 0) +
-                                (hasRoadBelow ? 1 : 0) +
-                                (hasRoadLeft ? 1 : 0) +
-                                (hasRoadRight ? 1 : 0);
-
-                // 根据相邻道路数量选择模型
-                GameObject roadPrefab = straightRoadPrefab;
-                if (roadCount == 2) // 双向拐角或直路
+                if (roadGrid[x, y] == 1) // 如果是道路
                 {
-                    if ((hasRoadAbove && hasRoadBelow) || (hasRoadLeft && hasRoadRight))
+                    Vector3 position = new Vector3(x * roadWidth, 0, y * roadLength);
+                    Quaternion rotation = Quaternion.identity;
+
+                    // 检查相邻格子
+                    bool hasRoadAbove = y < height - 1 && roadGrid[x, y + 1] == 1;
+                    bool hasRoadBelow = y > 0 && roadGrid[x, y - 1] == 1;
+                    bool hasRoadLeft = x > 0 && roadGrid[x - 1, y] == 1;
+                    bool hasRoadRight = x < width - 1 && roadGrid[x + 1, y] == 1;
+
+                    // 计算相邻道路数量
+                    int roadCount = (hasRoadAbove ? 1 : 0) +
+                                    (hasRoadBelow ? 1 : 0) +
+                                    (hasRoadLeft ? 1 : 0) +
+                                    (hasRoadRight ? 1 : 0);
+
+                    // 根据相邻道路数量选择模型
+                    GameObject roadPrefab = straightRoadPrefab;
+                    if (roadCount == 2) // 双向拐角或直路
                     {
-                        roadPrefab = straightRoadPrefab; // 直路
-                        if (hasRoadAbove && hasRoadBelow)
-                            rotation = Quaternion.identity; // 水平道路
-                        else if (hasRoadLeft && hasRoadRight)
-                            rotation = Quaternion.Euler(0, 90, 0); // 垂直道路
+                        if ((hasRoadAbove && hasRoadBelow) || (hasRoadLeft && hasRoadRight))
+                        {
+                            roadPrefab = straightRoadPrefab; // 直路
+                            if (hasRoadAbove && hasRoadBelow)
+                                rotation = Quaternion.identity; // 水平道路
+                            else if (hasRoadLeft && hasRoadRight)
+                                rotation = Quaternion.Euler(0, 90, 0); // 垂直道路
+                        }
+                        else
+                        {
+                            roadPrefab = cornerRoadPrefab; // 拐角
+                            if (hasRoadAbove && hasRoadRight)
+                                rotation = Quaternion.Euler(0, 90, 0); // 右上拐角
+                            else if (hasRoadRight && hasRoadBelow)
+                                rotation = Quaternion.Euler(0, 180, 0); // 右下拐角
+                            else if (hasRoadBelow && hasRoadLeft)
+                                rotation = Quaternion.Euler(0, -90, 0); // 左下拐角
+                            else if (hasRoadLeft && hasRoadAbove)
+                                rotation = Quaternion.Euler(0, 0, 0); // 左上拐角
+                        }
                     }
-                    else
+                    else if (roadCount == 3) // 三向路口
                     {
-                        roadPrefab = cornerRoadPrefab; // 拐角
-                        if (hasRoadAbove && hasRoadRight)
-                            rotation = Quaternion.Euler(0, 90, 0); // 右上拐角
-                        else if (hasRoadRight && hasRoadBelow)
-                            rotation = Quaternion.Euler(0, 180, 0); // 右下拐角
-                        else if (hasRoadBelow && hasRoadLeft)
-                            rotation = Quaternion.Euler(0, -90, 0); // 左下拐角
-                        else if (hasRoadLeft && hasRoadAbove)
-                            rotation = Quaternion.Euler(0, 0, 0); // 左上拐角
+                        roadPrefab = tJunctionRoadPrefab;
+                        if (!hasRoadBelow)
+                            rotation = Quaternion.Euler(0, 0, 0); // 上、左、右
+                        else if (!hasRoadLeft)
+                            rotation = Quaternion.Euler(0, 90, 0); // 上、右、下
+                        else if (!hasRoadAbove)
+                            rotation = Quaternion.Euler(0, 180, 0); // 右、下、左
+                        else if (!hasRoadRight)
+                            rotation = Quaternion.Euler(0, 270, 0); // 下、左、上
                     }
-                }
-                else if (roadCount == 3) // 三向路口
-                {
-                    roadPrefab = tJunctionRoadPrefab;
-                    if (!hasRoadBelow)
-                        rotation = Quaternion.Euler(0, 0, 0); // 上、左、右
-                    else if (!hasRoadLeft)
-                        rotation = Quaternion.Euler(0, 90, 0); // 上、右、下
-                    else if (!hasRoadAbove)
-                        rotation = Quaternion.Euler(0, 180, 0); // 右、下、左
-                    else if (!hasRoadRight)
-                        rotation = Quaternion.Euler(0, 270, 0); // 下、左、上
-                }
-                else if (roadCount == 4) // 十字路口
-                {
-                    roadPrefab = crossRoadPrefab;
-                }
+                    else if (roadCount == 4) // 十字路口
+                    {
+                        roadPrefab = crossRoadPrefab;
+                    }
 
-                GameObject road = Instantiate(roadPrefab, position, rotation);
-                roads.Add(road); // 将生成的道路添加到列表中
+                    GameObject road = Instantiate(roadPrefab, position, rotation);
+                    roads.Add(road); // 将生成的道路添加到列表中
+                }
             }
         }
     }
-}
     void GenerateBuildings(int[,] roadGrid, GameObject[] roads)
     {
         int width = roadGrid.GetLength(0);
@@ -308,7 +314,7 @@ public class CityGenerator : MonoBehaviour
             {
                 if (roadGrid[x, y] == 0|| roadGrid[x, y] == 1)
                 {
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < weedPerBlock; i++)
                     {
                         // 根据杂草生成密度随机生成杂草
                         if (Random.value < weedDensity)
@@ -346,7 +352,7 @@ public class CityGenerator : MonoBehaviour
             {
                 if (roadGrid[x, y] == 0|| roadGrid[x, y] == 1)
                 {
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < flowerPerBlock; i++)
                     {
                         // 根据杂草生成密度随机生成杂草
                         if (Random.value < flowerDensity)
@@ -368,6 +374,40 @@ public class CityGenerator : MonoBehaviour
                             float randomScale = Random.Range(minScale, maxScale);
                             flower.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    void GenerateCrack(int[,] roadGrid)
+    {
+        int width = roadGrid.GetLength(0);
+        int height = roadGrid.GetLength(1);
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (roadGrid[x, y] == 1)
+                {
+                    for (int i = 0; i < crackPerRoad; i++)
+                    {
+                            // 随机选择一个杂草预制体
+                            GameObject crackSprite = crackSprites[Random.Range(0, crackSprites.Length)];
+
+                            // 随机生成杂草的位置
+                            Vector3 crackPosition = new Vector3(
+                                Random.Range(0, 180),
+                                0.05f,
+                                Random.Range(0, 180)
+                            );
+
+                            // 随机生成杂草的朝向
+                            Quaternion crackRotation = Quaternion.Euler(90, Random.Range(0, 360), 0);
+                            // 生成杂草
+                            GameObject crack = Instantiate(crackSprite, crackPosition, crackRotation);
+                            float randomScale = Random.Range(2f, 3f);
+                            crack.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
                     }
                 }
             }
