@@ -45,6 +45,7 @@ public class CityGenerator : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         GenerateRoad(roadGrid);
         GenerateBuildings(roadGrid, roads.ToArray());
         GenerateCars(roadGrid);
@@ -406,8 +407,7 @@ public class CityGenerator : MonoBehaviour
                             Quaternion crackRotation = Quaternion.Euler(90, Random.Range(0, 360), 0);
                             // 生成杂草
                             GameObject crack = Instantiate(crackSprite, crackPosition, crackRotation);
-                            float randomScale = Random.Range(2f, 3f);
-                            crack.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+                            crack.transform.localScale = new Vector3(Random.Range(2f, 3f), Random.Range(2f, 3f), Random.Range(2f, 3f));
                     }
                 }
             }

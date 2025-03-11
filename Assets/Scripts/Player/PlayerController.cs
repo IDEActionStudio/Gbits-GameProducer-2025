@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed; // 角色移动速度
     public GameObject mouseTargetIndicator; // 鼠标落点指示器
     private Image imageMouse;
-    
+    private float rayDistance = 1f;
     
     private Vector3 targetPosition; // 目标位置
     private bool isMoving; // 是否正在移动
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             // 如果检测到障碍物，停止移动
             isMoving = false;
+            
             return;
         }
 
@@ -71,6 +72,8 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
     }
+
+    
     
     bool CheckPathForObstacles(Vector3 target)
     {
@@ -97,7 +100,7 @@ public class PlayerController : MonoBehaviour
     bool CheckForObstacles(Vector3 direction)
     {
         // 射线长度
-        float rayDistance = 1f;
+        
 
         // 合并需要检测的图层
         int obstacleLayerMask = (1 << LayerMask.NameToLayer("Buildings")) |
@@ -135,12 +138,13 @@ public class PlayerController : MonoBehaviour
         // 检测路径上是否有障碍物
         if (CheckPathForObstacles(target))
         {
+            lineImage.gameObject.SetActive(true);
             lineImage.color = Color.red; // 线变红
             imageMouse.color = Color.red;
         }
         else
         {
-            lineImage.color = Color.white; // 线变白
+            lineImage.gameObject.SetActive(false);
             imageMouse.color = Color.white;
         }
     }
