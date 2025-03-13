@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition; // 目标位置
     private bool isMoving; // 是否正在移动
     private Vector3 mouseScreenPos;
+    public Image lineImage; // 拖入一个UI Image
 
     private void Start()
     {
@@ -59,7 +60,6 @@ public class PlayerController : MonoBehaviour
         {
             // 如果检测到障碍物，停止移动
             isMoving = false;
-            
             return;
         }
 

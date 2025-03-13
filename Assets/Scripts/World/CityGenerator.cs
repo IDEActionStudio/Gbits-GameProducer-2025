@@ -55,6 +55,7 @@ public class CityGenerator : MonoBehaviour
         GenerateCrack(roadGrid);
     }
 
+    #region 生成道路
     void GenerateRoad(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
@@ -133,6 +134,9 @@ public class CityGenerator : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region 生成建筑
     void GenerateBuildings(int[,] roadGrid, GameObject[] roads)
     {
         int width = roadGrid.GetLength(0);
@@ -160,7 +164,9 @@ public class CityGenerator : MonoBehaviour
             }
         }
     }
-    
+    #endregion
+
+    #region 生成车辆
    void GenerateCars(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
@@ -230,7 +236,9 @@ public class CityGenerator : MonoBehaviour
             }
         }
     }
+   #endregion
 
+   #region 获取模型尺寸
     Vector3 GetModelSize(GameObject model)
     {
         Renderer renderer = model.GetComponent<Renderer>();
@@ -244,7 +252,9 @@ public class CityGenerator : MonoBehaviour
             return Vector3.zero;
         }
     }
+    #endregion
 
+    #region 检测是否穿模
     bool IsOverlapping(Vector3 position, Vector3 buildingSize, GameObject[] roads, Vector3 roadSize)
     {
         foreach (var road in roads)
@@ -261,10 +271,9 @@ public class CityGenerator : MonoBehaviour
         }
         return false; // 不重叠
     }
-    
-    
-    
-    
+    #endregion
+
+    #region 生成小物件
     void GenerateProps(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
@@ -304,7 +313,9 @@ public class CityGenerator : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region 生成杂草
     void GenerateWeeds(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
@@ -342,7 +353,9 @@ public class CityGenerator : MonoBehaviour
             }
         }
     }
+    #endregion
     
+    #region 生成花朵
     void GenerateFlowers(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
@@ -380,7 +393,9 @@ public class CityGenerator : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region 生成裂缝
     void GenerateCrack(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
@@ -413,4 +428,5 @@ public class CityGenerator : MonoBehaviour
             }
         }
     }
+    #endregion
 }

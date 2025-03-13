@@ -1,12 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public float moveSpeed = 2f;  // 敌人基础移动速度
-    public int health = 5;  // 敌人的基础生命值
-    public int maxHealth = 5; // 敌人最大生命
     public string targetTag = "Player"; //当前目标Tag
     public float shootInterval = 2f;  // 发射时间间隔
     public float bulletInterval = 0.5f; //多颗子弹发射时的间隔
@@ -56,7 +53,7 @@ public class Enemy : MonoBehaviour
     {
         MoveEnemy();  // 控制敌人移动
         CheckDirection();
-        if(Vector3.Distance(transform.position, target.position) < 0.5f)
+        if(Vector3.Distance(transform.position, target.position) < 0.1f)
             EnableAttack();
         //UpdateTarget(targetTag);
         if (canAttack)
@@ -231,7 +228,6 @@ public class Enemy : MonoBehaviour
     protected virtual void OnDisable()
     {
         StopAllCoroutines();
-        if (health <= 0) health = maxHealth;
-        //ObjectPool.GetInstance().RecycleObj(healthBar.gameObject);
+        ObjectPool.GetInstance().RecycleObj(gameObject);
     }
 }
