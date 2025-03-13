@@ -5,35 +5,42 @@ using UnityEngine;
 public class Boss : Enemy
 {
     /// <summary>
-    /// �����˺�
+    /// 攻击伤害
     /// </summary>
     public int attackDamage = 0;
+    
     /// <summary>
-    /// �����ͷż��
+    /// 攻击释放间隔
     /// </summary>
     public float attackInterval = 5;
+    
     /// <summary>
-    /// ���ܸ���
+    /// 技能数量
     /// </summary>
     public int attackNum = 4;
+    
     /// <summary>
-    /// �����ͷż�ʱ��
+    /// 当前攻击间隔计时
     /// </summary>
     protected float currentIntervalTime = 0; 
+    
     /// <summary>
-    /// ����ʱ����
+    /// 攻击计时器
     /// </summary>
     protected float currentAttackTime; 
+    
     /// <summary>
-    /// ��ǰ�ͷŵļ�������
+    /// 当前释放的技能索引
     /// </summary>
     protected int currentAttackIndex; 
+    
     /// <summary>
-    /// �Ƿ����ͷż��ܹ����� 
+    /// 是否正在释放技能
     /// </summary>
     protected bool isAttack;
+    
     /// <summary>
-    /// boss����������
+    /// Boss的初始化方法
     /// </summary>
     // Start is called before the first frame update
     void Start()
@@ -50,28 +57,27 @@ public class Boss : Enemy
         }
         else
         {
-            MoveEnemy();  // ���Ƶ����ƶ�
+            MoveEnemy();  // 控制敌人的移动
             if (canAttack)
             {
-                AttackAtPlayer();  // ����߼�
+                AttackAtPlayer();  // 攻击逻辑
             }
-            //�ͷż���
+            // 判断是否可以释放技能
             CanAttack();
         }
-
-
     }
+    
     /// <summary>
-    /// �ж��Ƿ�����ͷż���
+    /// 判断是否可以释放技能
     /// </summary>
     private void CanAttack()
     {
         if (currentIntervalTime >= attackInterval)
         {
-            //��ʼ��
+            // 开始攻击
             isAttack = true;
             currentIntervalTime = 0;
-            //ѡ��ǰ��Ҫִ�еļ���
+            // 随机选择当前要执行的技能
             currentAttackIndex = Random.Range(0, attackNum);
         }
         else
@@ -79,8 +85,9 @@ public class Boss : Enemy
             currentIntervalTime += Time.deltaTime;
         }
     }
+    
     /// <summary>
-    /// �ͷż���
+    /// 释放技能
     /// </summary>
     private void Attack()
     {
@@ -104,28 +111,34 @@ public class Boss : Enemy
         if (!isAttack) return;
         currentAttackTime += Time.deltaTime;
     }
-    //����1
+    
+    // 技能1
     protected virtual void AttackFirst()
     {
-    //    Debug.Log("boss的第一种攻击");
+        // Debug.Log("Boss的第一种攻击");
     }
-    //����2
+    
+    // 技能2
     protected virtual void AttackSecond()
     {
-     //   Debug.Log("boss的第二种攻击");
-
+        // Debug.Log("Boss的第二种攻击");
     }
-    //����3
+    
+    // 技能3
     protected virtual void AttackThird()
     {
-        Debug.Log("boss的第三种攻击");
-
+        Debug.Log("Boss的第三种攻击");
     }
-    //����4
+    
+    // 技能4
     protected virtual void AttackFourth()
     {
-        Debug.Log("boss的第四种攻击");
+        Debug.Log("Boss的第四种攻击");
     }
+    
+    /// <summary>
+    /// 停止攻击
+    /// </summary>
     protected void StopAttack()
     {
         isAttack = false;

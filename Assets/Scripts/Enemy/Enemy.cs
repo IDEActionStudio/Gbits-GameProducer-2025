@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public float directionChangeInterval = 3f;  // 敌人改变移动方向的时间间隔
     public LayerMask platformLayer;  // 平台的图层（用于碰撞检测）
 
+    protected float enemyRaycastDistance = 10f;
     protected Transform target;  // 引用玩家位置
     protected float shootTimer = 0f;  // 射击计时器
     protected bool canAttack;  // 控制敌人是否可以攻击
@@ -141,31 +142,41 @@ public class Enemy : MonoBehaviour
         moveDirection = new Vector3(transform.position.x - target.position.x, transform.position.y - target.position.y).normalized * 0.3f + randomDirection * 0.7f;
         moveDirection.Normalize();
     }
-
     protected virtual void MoveEnemy()
     {
-
+        Debug.DrawRay(transform.position, moveDirection * enemyRaycastDistance, Color.red);  // 绘制移动方向[4](@ref)
+        // 检查是否需要改变移动方向
         if (directionChangeTimer >= directionChangeInterval)
         {
+            // 设置随机移动方向
             SetRandomMoveDirection();
+            // 重置方向改变计时器
             directionChangeTimer = 0f;
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDirection, 1f, platformLayer);
+        // 使用射线检测前方是否有障碍物
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDirection, enemyRaycastDistance, platformLayer);
         if (hit.collider != null)
         {
+            // 获取碰撞的法线
             Vector3 collisionNormal = hit.normal;
+            // 计算反射方向
             Vector3 newDirection = Vector3.Reflect(moveDirection, collisionNormal);
+            // 更新移动方向为反射方向并归一化
             moveDirection = newDirection.normalized;
         }
 
+        // 计算新的位置
         Vector3 newPosition = transform.position + moveDirection * moveSpeed;
+        // 检查新位置是否在摄像机范围内
         if (IsPositionWithinCameraBounds(newPosition))
         {
+            // 如果新位置在摄像机范围内，更新敌人位置
             transform.position = newPosition;
         }
         else
         {
+            // 如果新位置超出摄像机范围，重新设置随机移动方向
             SetRandomMoveDirection();
         }
     }
