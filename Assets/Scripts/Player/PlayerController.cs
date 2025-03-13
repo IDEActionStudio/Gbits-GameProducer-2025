@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     
-    
+    public Image lineImage; // 拖入一个UI Image
 
     void DrawLineToTarget(Vector3 target)
     {
