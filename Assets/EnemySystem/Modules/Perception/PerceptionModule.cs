@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace EnemySystem.Modules.Perception
@@ -22,11 +23,29 @@ namespace EnemySystem.Modules.Perception
         private Transform _mainTarget;
         private Collider[] _detectedColliders = new Collider[5];
 
+        
+        // 新增事件声明（在类内部添加）
+        public event Action<Transform> OnTargetDetected;
+        public event Action OnTargetLost;
+        public event Action OnEnterAttackRange;
+
+        // 新增私有字段
+        private Transform _previousTarget;
+        private bool _wasInAttackRange;
+        private float _attackRange;
+        
         /// <summary>
         /// 当前主要威胁目标
         /// </summary>
         public Transform PrimaryTarget => _mainTarget;
 
+        
+        /// <summary>
+        /// 是否检测到有效目标（只读）
+        /// </summary>
+        public bool HasDetectedTarget => _mainTarget != null;        
+        
+        
         /// <summary>
         /// 初始化感知系统
         /// </summary>
@@ -39,6 +58,8 @@ namespace EnemySystem.Modules.Perception
 
         private void PerformDetection()
         {
+            bool targetChanged = false;
+            
             int found = Physics.OverlapSphereNonAlloc(
                 transform.position,
                 _detectionRadius,
@@ -54,6 +75,38 @@ namespace EnemySystem.Modules.Perception
                 {
                     _mainTarget = _detectedColliders[i].transform;
                     break; // 优先选择第一个有效目标
+                }
+            }
+            
+            // 在循环结束后添加状态判断
+            if (_mainTarget != _previousTarget)
+            {
+                if (_mainTarget != null)
+                {
+                    OnTargetDetected?.Invoke(_mainTarget);
+                    targetChanged = true;
+                }
+                else if (_previousTarget != null)
+                {
+                    OnTargetLost?.Invoke();
+                }
+                _previousTarget = _mainTarget;
+            }
+
+            // 攻击范围检测逻辑
+            if (_mainTarget != null)
+            {
+                float currentDistance = Vector3.Distance(transform.position, _mainTarget.position);
+                bool isInRange = currentDistance <= _attackRange * 1.05f;
+
+                if (isInRange && !_wasInAttackRange)
+                {
+                    OnEnterAttackRange?.Invoke();
+                    _wasInAttackRange = true;
+                }
+                else if (!isInRange && _wasInAttackRange)
+                {
+                    _wasInAttackRange = false;
                 }
             }
         }

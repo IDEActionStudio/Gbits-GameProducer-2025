@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using EnemySystem.Data.Configs.Enums;
+using EnemySystem.Data.Enums;
 using UnityEngine;
 
 namespace EnemySystem.Data.Configs

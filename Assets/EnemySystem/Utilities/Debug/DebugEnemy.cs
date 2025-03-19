@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace EnemySystem.Testing.Debug
 {
-     /// <summary>
-        /// 敌人调试可视化工具
-        /// </summary>
-        [ExecuteAlways]
+    /// <summary>
+    /// 敌人调试可视化工具
+    /// </summary>
+    [ExecuteAlways]
 
     public class DebugEnemy : MonoBehaviour
     {
@@ -43,5 +43,5 @@ namespace EnemySystem.Testing.Debug
                     $"State: {_brain.CurrentState}");
             }
         }
-
     }
+}

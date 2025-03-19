@@ -1,4 +1,4 @@
-namespace EnemySystem.Data.Configs.Enums
+namespace EnemySystem.Data.Enums
 {
     public enum AttackType
     {

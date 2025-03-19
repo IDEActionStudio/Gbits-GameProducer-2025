@@ -1,6 +1,6 @@
 namespace EnemySystem.Modules.Combat.Interfaces
 {
-    public interface Icombat
+    public interface ICombat
     {
         
     }

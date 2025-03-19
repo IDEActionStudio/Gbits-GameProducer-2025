@@ -1,6 +1,6 @@
 using EnemySystem.Core.AI;
-using EnemySystem.Core.StateMachine.BaseStates;
-using EnemySystem.Data.Configs.Enums;
+using EnemySystem.Core.StateMachine.Base;
+using EnemySystem.Data.Enums;
 
 namespace EnemySystem.Core.StateMachine.States
 {
@@ -15,12 +15,12 @@ namespace EnemySystem.Core.StateMachine.States
 
         public PatrolState(EnemyBrain context) : base(context) { }
 
-        public override void Enter()
+        protected override void Enter()
         {
             Context.Movement.StartPatrol();
         }
 
-        public override void Update()
+        protected override void Update()
         {
             if (Context.Perception.HasDetectedTarget)
             {

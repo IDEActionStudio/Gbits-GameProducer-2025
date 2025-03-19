@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using EnemySystem.Core.AI;
 using EnemySystem.Data.Configs;
-using EnemySystem.Data.Configs.Enums;
+using EnemySystem.Data.Enums;
 
 namespace EnemySystem.Core.Managers
 {

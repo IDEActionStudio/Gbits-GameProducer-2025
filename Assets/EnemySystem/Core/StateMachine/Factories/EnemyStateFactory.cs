@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using EnemySystem.Core.AI;
-using EnemySystem.Core.Interfaces;
+using EnemySystem.Core.StateMachine.Interfaces;
 using EnemySystem.Core.StateMachine.States;
-using EnemySystem.Data.Configs.Enums;
+using EnemySystem.Data.Enums;
 
-namespace EnemySystem.Core.StateMachine
+namespace EnemySystem.Core.StateMachine.Factories
 {
     
     /// <summary>

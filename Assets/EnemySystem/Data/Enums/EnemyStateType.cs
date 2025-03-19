@@ -1,4 +1,4 @@
-namespace EnemySystem.Data.Configs.Enums
+namespace EnemySystem.Data.Enums
 {
     /// <summary>
     /// 敌人状态类型枚举
