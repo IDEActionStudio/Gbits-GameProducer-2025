@@ -2,6 +2,7 @@ using EnemySystem.Core.AI;
 using EnemySystem.Core.StateMachine.Factories;
 using EnemySystem.Core.StateMachine.Interfaces;
 using EnemySystem.Data.Enums;
+using UnityEngine;
 
 namespace EnemySystem.Core.StateMachine
 {
@@ -10,7 +11,7 @@ namespace EnemySystem.Core.StateMachine
     /// 核心职责：管理状态堆栈，处理状态间的转换逻辑，驱动状态行为更新
     /// 设计模式：基于有限状态机（FSM）模式实现
     /// </summary>
-    public class EnemyStateMachine
+    public class EnemyStateMachine : MonoBehaviour
     {
         // 添加上下文引用
         private readonly EnemyBrain _context;
