@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public TextMeshProUGUI CountdownText;
+    private TextMeshProUGUI CountdownText;
     public float initialTime = 60f; // 初始倒计时时间（秒）
     private float timeRemaining; // 剩余时间
     private bool timerIsRunning; // 计时器是否在运行
@@ -18,11 +18,13 @@ public class CountdownTimer : MonoBehaviour
     private void OnEnable()
     {
         Item07Effect.OnItem07Effect += AddTime;
+        Item08Effect.OnItem08Effect += ReverseTime;
     }
 
     private void OnDisable()
     {
         Item07Effect.OnItem07Effect -= AddTime;
+        Item08Effect.OnItem08Effect -= ReverseTime;
     }
 
     private void Update()
@@ -49,12 +51,6 @@ public class CountdownTimer : MonoBehaviour
         timerIsRunning = true;
     }
 
-    // 增加时间
-    public void AddTime(float secondsToAdd)
-    {
-        timeRemaining += secondsToAdd;
-    }
-
     // 获取剩余时间
     public float GetRemainingTime()
     {
@@ -68,5 +64,17 @@ public class CountdownTimer : MonoBehaviour
 
         // 格式化为两位数显示
         CountdownText.text = string.Format("{0:00}:{1:00}", seconds, milliseconds);
+    }
+    
+    // 增加时间
+    private void AddTime(float secondsToAdd)
+    {
+        timeRemaining += secondsToAdd;
+    }
+    
+    //倒转沙漏
+    private void ReverseTime()
+    {
+        timeRemaining = initialTime-timeRemaining;
     }
 }

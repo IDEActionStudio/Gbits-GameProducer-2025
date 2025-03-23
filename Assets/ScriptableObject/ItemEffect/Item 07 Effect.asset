@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6aeb2226f81c194ca08b84ee34af68a, type: 3}
   m_Name: Item 07 Effect
   m_EditorClassIdentifier: 
-  amount: 0
+  amount: 5

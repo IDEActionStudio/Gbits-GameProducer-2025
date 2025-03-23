@@ -4,15 +4,17 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed; // 角色移动速度
+    public float moveSpeed; // 移动速度
+    public float dashSpeed; // 角色移动速度
     public GameObject mouseTargetIndicator; // 鼠标落点指示器
     private Image imageMouse;
+    public Image lineImage; // 拖入一个UI Image
     private float rayDistance = 1f;
-    
     private Vector3 targetPosition; // 目标位置
     private bool isMoving; // 是否正在移动
     private Vector3 mouseScreenPos;
-    public Image lineImage; // 拖入一个UI Image
+    
+    private Rigidbody rigidBody;
 
     private void Start()
     {
@@ -21,6 +23,22 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // 获取输入方向
+        float horizontal = Input.GetAxis("Horizontal"); // A/D 或 左右箭头
+        float vertical = Input.GetAxis("Vertical");     // W/S 或 上下箭头
+
+        // 创建输入方向向量
+        Vector3 inputDirection = new Vector3(horizontal, 0, vertical).normalized;
+
+        // 如果玩家有输入
+        if (inputDirection != Vector3.zero)
+        {
+            // 将输入方向旋转45度
+            Vector3 rotatedDirection = RotateVector(inputDirection, -45f);
+            Vector3 movement=rotatedDirection * moveSpeed * Time.deltaTime;
+            // 移动玩家
+            GetComponent<Rigidbody>().MovePosition(transform.position + movement);
+        }
         // 检测鼠标左键点击
             // 从摄像机发射一条射线到鼠标点击的位置
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -34,12 +52,11 @@ public class PlayerController : MonoBehaviour
                 mouseTargetIndicator.transform.position = mouseScreenPos;
                 // 检查击中的物体是否属于CanGo图层
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("CanGo")
-                    ||hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    ||hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")
+                    ||hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactive"))
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        // 检查路径上是否有障碍物
-                        // 如果没有障碍物，设置目标位置并开始移动
                         targetPosition = hit.point;
                         isMoving = true;
                     }
@@ -60,11 +77,12 @@ public class PlayerController : MonoBehaviour
         {
             // 如果检测到障碍物，停止移动
             isMoving = false;
+            
             return;
         }
 
         // 移动角色
-        transform.position += direction * moveSpeed * Time.deltaTime;
+        transform.position += direction * dashSpeed * Time.deltaTime;
 
         // 如果角色接近目标位置，停止移动
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
@@ -101,7 +119,6 @@ public class PlayerController : MonoBehaviour
     {
         // 射线长度
         
-
         // 合并需要检测的图层
         int obstacleLayerMask = (1 << LayerMask.NameToLayer("Buildings")) |
                                 (1 << LayerMask.NameToLayer("Vehicles")) |
@@ -118,7 +135,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     
-    public Image lineImage; // 拖入一个UI Image
+    
 
     void DrawLineToTarget(Vector3 target)
     {
@@ -148,33 +165,6 @@ public class PlayerController : MonoBehaviour
             imageMouse.color = Color.white;
         }
     }
-    
-    /*public float moveSpeed; // 移动速度
-    private CharacterController characterController;
-    void Start()
-    {
-        // 获取Character Controller组件
-        characterController = GetComponent<CharacterController>();
-    }
-    void Update()
-    {
-        // 获取输入方向
-        float horizontal = Input.GetAxis("Horizontal"); // A/D 或 左右箭头
-        float vertical = Input.GetAxis("Vertical");     // W/S 或 上下箭头
-
-        // 创建输入方向向量
-        Vector3 inputDirection = new Vector3(horizontal, 0, vertical).normalized;
-
-        // 如果玩家有输入
-        if (inputDirection != Vector3.zero)
-        {
-            // 将输入方向旋转45度
-            Vector3 rotatedDirection = RotateVector(inputDirection, -45f);
-
-            // 移动玩家
-            transform.position += rotatedDirection * moveSpeed * Time.deltaTime;
-        }
-    }
 
     // 旋转向量的辅助函数
     private Vector3 RotateVector(Vector3 vector, float angle)
@@ -188,5 +178,5 @@ public class PlayerController : MonoBehaviour
 
         // 返回旋转后的向量
         return new Vector3(x, 0, z).normalized;
-    }*/
+    }
 }
