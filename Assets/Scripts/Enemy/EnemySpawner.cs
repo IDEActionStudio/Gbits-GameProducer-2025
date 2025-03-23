@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public ObjectPool enemyPool; // 敌人对象池
-    public int maxEnemies = 10; // 最大敌人数
+    public int maxEnemies; // 最大敌人数
 
     void Start()
     {

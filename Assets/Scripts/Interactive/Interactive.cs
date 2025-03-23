@@ -1,9 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Interactive : MonoBehaviour
 {
-    public float interactionDistance=3f; // 交互距离
     public Animator animator; // 动画组件
     public AudioSource audioSource; // 音效组件
     public string triggerName = "PlayAnimation"; // 动画触发器名称
@@ -17,20 +17,18 @@ public class Interactive : MonoBehaviour
         playerCharacter=player.GetComponent<PlayerCharacter>();
     }
 
-    protected virtual void Update()
+    private void OnTriggerStay(Collider other)
     {
-        // 检查玩家是否在交互距离内
-        if (Vector3.Distance(player.transform.position, transform.position) <= interactionDistance)
-        {
+        if(other.CompareTag("Player") )
             Interact();
-        }
     }
 
     protected virtual void Interact()
     {
         // 检查是否按下右键
-        if (Input.GetMouseButtonDown(1)) // 1 表示右键
+        if (Input.GetKeyDown(KeyCode.E) )
         {
+            Debug.Log("Interact");
             //不同交互物要做不同的事情
             MakeSomeReaction();
         }

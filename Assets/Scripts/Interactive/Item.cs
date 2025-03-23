@@ -10,7 +10,7 @@ public class Item : Interactive
     public float moveSpeed = 2f; // 移动速度
 
     private Vector3 targetPosition; // 目标位置
-    private bool isMoving = false; // 是否正在移动
+    private bool isMoving; // 是否正在移动
 
     protected virtual void Start()
     {
@@ -19,9 +19,8 @@ public class Item : Interactive
         SetRandomTargetPosition();
     }
 
-    protected virtual void Update()
+    void Update()
     {
-        base.Update();
         if (isMoving)
         {
             // 使用 Lerp 平滑移动

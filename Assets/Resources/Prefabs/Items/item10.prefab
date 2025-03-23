@@ -100,11 +100,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5707217121682844643
 MonoBehaviour:
@@ -123,3 +123,4 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   triggerName: PlayAnimation
   itemEffect: {fileID: 11400000, guid: 0673aa0160da97b4aa168df6b31bf8b9, type: 2}
+  moveSpeed: 2

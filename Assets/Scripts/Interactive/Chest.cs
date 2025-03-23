@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
-using Vector3 = UnityEngine.Vector3;
 
 public class Chest : Interactive
 {
@@ -26,7 +25,7 @@ public class Chest : Interactive
     protected override void Interact()
     {
         // 检查是否按下右键
-        if (Input.GetMouseButtonDown(1)&&(!isOpened)&&playerCharacter.money >= requireMoney) 
+        if (Input.GetKeyDown(KeyCode.E)&&(!isOpened)&&playerCharacter.money >= requireMoney) 
         {
             //不同交互物要做不同的事情
             MakeSomeReaction();

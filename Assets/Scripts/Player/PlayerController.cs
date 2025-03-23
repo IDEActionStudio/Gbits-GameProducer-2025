@@ -15,10 +15,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 mouseScreenPos;
     
     private Rigidbody rigidBody;
+    private CharacterController characterController;
 
     private void Start()
     {
         imageMouse = mouseTargetIndicator.GetComponent<Image>();
+        rigidBody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -37,7 +40,7 @@ public class PlayerController : MonoBehaviour
             Vector3 rotatedDirection = RotateVector(inputDirection, -45f);
             Vector3 movement=rotatedDirection * moveSpeed * Time.deltaTime;
             // 移动玩家
-            GetComponent<Rigidbody>().MovePosition(transform.position + movement);
+            characterController.Move(movement);
         }
         // 检测鼠标左键点击
             // 从摄像机发射一条射线到鼠标点击的位置
