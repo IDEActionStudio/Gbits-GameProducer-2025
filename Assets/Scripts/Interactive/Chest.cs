@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class Chest : Interactive
 {
     
-    private int requireMoney;
+    public int requireMoney;
     private string itemsFolderPath = "Prefabs/Items"; // 道具预制体的路径
     private bool isOpened; // 宝箱是否已开启
     private int canDouble=0;

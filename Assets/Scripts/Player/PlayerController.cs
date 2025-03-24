@@ -94,11 +94,11 @@ public class PlayerController : MonoBehaviour
         {
             // 如果检测到障碍物，停止移动
             isMoving = false;
-            
             return;
         }
 
         // 移动角色
+        //characterController.Move(direction * dashSpeed * Time.deltaTime);
         transform.position += direction * dashSpeed * Time.deltaTime;
 
         // 如果角色接近目标位置，停止移动

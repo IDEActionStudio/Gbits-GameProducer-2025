@@ -147,6 +147,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  itemEffect: {fileID: 11400000, guid: 398eba39565fa604dbad6342bf582378, type: 2}
   moneyAmount: 10
   moneyPrefab: {fileID: 7691319533779164087, guid: 1bd46efd225042c4a81d71b8e4bc1c09, type: 3}
 --- !u!114 &8488441394126142117
