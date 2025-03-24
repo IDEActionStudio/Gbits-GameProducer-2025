@@ -1,11 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed; // 移动速度
     public float dashSpeed; // 角色移动速度
+    private bool canDash;
     public GameObject mouseTargetIndicator; // 鼠标落点指示器
     private Image imageMouse;
     public Image lineImage; // 拖入一个UI Image
@@ -13,14 +16,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition; // 目标位置
     private bool isMoving; // 是否正在移动
     private Vector3 mouseScreenPos;
-    
-    private Rigidbody rigidBody;
     private CharacterController characterController;
 
     private void Start()
     {
+        canDash = true;
         imageMouse = mouseTargetIndicator.GetComponent<Image>();
-        rigidBody = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
     }
 
@@ -60,8 +61,14 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        targetPosition = hit.point;
-                        isMoving = true;
+                        if (canDash)
+                        {
+                            targetPosition = hit.point;
+                            isMoving = true;
+                            canDash = false;
+                            StartCoroutine(triggerDash(1));
+                        }
+                        
                     }
                 }
             }
@@ -71,6 +78,13 @@ public class PlayerController : MonoBehaviour
             MoveToTarget();
         }
     }
+
+    private IEnumerator triggerDash(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        canDash = true;
+    }
+    
 
     void MoveToTarget()
     {
@@ -181,5 +195,17 @@ public class PlayerController : MonoBehaviour
 
         // 返回旋转后的向量
         return new Vector3(x, 0, z).normalized;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isMoving)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                other.gameObject.GetComponent<Enemy>().OnHurt.Invoke();
+                canDash = true;
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    public UnityEvent OnHurt;
     public UnityEvent OnDeath;
     //属性
     public int money;

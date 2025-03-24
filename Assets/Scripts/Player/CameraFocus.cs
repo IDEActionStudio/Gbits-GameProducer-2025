@@ -6,7 +6,7 @@ using UnityEngine;
 public class CameraFocus : MonoBehaviour
 {
     private Transform playerTransform; // 玩家的Transform
-    private float maxDistance = 5f;    // 最大距离限制
+    private float maxDistance = 3f;    // 最大距离限制
 
     private void Start()
     {

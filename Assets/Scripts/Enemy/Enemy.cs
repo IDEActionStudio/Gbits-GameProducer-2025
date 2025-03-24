@@ -1,8 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    public UnityEvent OnHurt;
+    
     private ObjectPool pool;
     
     public int moneyAmount;
@@ -16,6 +19,11 @@ public class Enemy : MonoBehaviour
         this.pool = pool;
     }
 
+    public virtual void TakeDamage()
+    {
+        Die();
+    }
+    
     // 敌人死亡时调用
     public void Die()
     {

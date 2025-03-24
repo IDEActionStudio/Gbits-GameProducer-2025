@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 public class Coin : MonoBehaviour
 {
     // 移动速度
-    private float moveSpeed = 3f;
+    private float moveSpeed = 5f;
     private float flySpeed = 20f;
     // 随机点的位置
     private Vector3 randomPoint;
@@ -42,7 +42,7 @@ public class Coin : MonoBehaviour
         else
         {
             // 向玩家移动
-            StartCoroutine(ExecuteAfterDelay(2));
+            StartCoroutine(ExecuteAfterDelay(1));
         }
     }
 
@@ -56,7 +56,7 @@ public class Coin : MonoBehaviour
         float radians = angle * Mathf.Deg2Rad;
 
         // 计算随机点的位置
-        randomPoint = transform.position + new Vector3(Mathf.Cos(radians), 0, Mathf.Sin(radians)) * 2f;
+        randomPoint = transform.position + new Vector3(Mathf.Cos(radians), 0, Mathf.Sin(radians)) *Random.Range(0.8f, 4f);
     }
 
     // 向随机点移动
@@ -99,7 +99,7 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player entered");
-            other.gameObject.GetComponent<PlayerCharacter>().money += 10;
+            other.gameObject.GetComponent<PlayerCharacter>().money += 1;
             Destroy(gameObject);
         }
     }
