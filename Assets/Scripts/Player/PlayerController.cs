@@ -103,7 +103,6 @@ public class PlayerController : MonoBehaviour
         }
         // 移动角色
         characterController.Move(direction * dashSpeed * Time.deltaTime);
-        Debug.Log(Vector3.Distance(transform.position, targetPosition));
         if (Vector3.Distance(transform.position, targetPosition) < 1.1f)
         {
             isMoving = false;

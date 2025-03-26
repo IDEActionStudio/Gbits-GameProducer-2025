@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -22,9 +23,9 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false; // 禁止自动旋转
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
@@ -80,7 +81,7 @@ public class EnemyAI : MonoBehaviour
         if (Time.time - lastAttackTime >= attackCooldown)
         {
             Debug.Log("Enemy Attacked!");
-            player.GetComponent<PlayerCharacter>().TakeDamage();
+            player.GetComponent<PlayerCharacter>().OnHurt.Invoke();
             lastAttackTime = Time.time;
         }
     }
@@ -93,5 +94,15 @@ public class EnemyAI : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, transform.position + (player.position - transform.position).normalized * detectionRange);
         }
+    }
+
+    public void Strip()
+    {
+        agent.speed = 1f;
+    }
+
+    public void StopStrip()
+    {
+        agent.speed = 3.5f;
     }
 }

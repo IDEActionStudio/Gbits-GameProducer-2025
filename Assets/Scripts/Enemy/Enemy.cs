@@ -17,11 +17,13 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
+        Item02Effect.OnItem02Effect += IncreaseMoneyDrop;
         Item09Effect.OnItem09Effect += TriggerItem09Effect;
     }
 
     private void OnDisable()
     {
+        Item02Effect.OnItem02Effect -= IncreaseMoneyDrop;
         Item09Effect.OnItem09Effect -= TriggerItem09Effect;
     }
 
@@ -52,6 +54,11 @@ public class Enemy : MonoBehaviour
     private void TriggerItem09Effect()
     {
         enable09 = true;
+    }
+
+    private void IncreaseMoneyDrop()
+    {
+        moneyAmount += 2;
     }
     
     /*Vector3 GetRandomPosition()

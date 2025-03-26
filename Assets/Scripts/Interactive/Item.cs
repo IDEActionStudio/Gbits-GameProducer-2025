@@ -7,7 +7,7 @@ public class Item : Interactive
 {
     public ItemEffect itemEffect;
     private float radius = 2f; // 圆的半径
-    public float moveSpeed = 2f; // 移动速度
+    private float moveSpeed = 2f; // 移动速度
 
     private Vector3 targetPosition; // 目标位置
     private bool isMoving; // 是否正在移动
