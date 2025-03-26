@@ -14,15 +14,17 @@ public class PlayerController : MonoBehaviour
     public Image lineImage; // 拖入一个UI Image
     private float rayDistance = 1f;
     private Vector3 targetPosition; // 目标位置
-    private bool isMoving; // 是否正在移动
+    public bool isMoving; // 是否正在移动
     private Vector3 mouseScreenPos;
     private CharacterController characterController;
+    private Animator animator;
 
     private void Start()
     {
         canDash = true;
         imageMouse = mouseTargetIndicator.GetComponent<Image>();
         characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -41,7 +43,10 @@ public class PlayerController : MonoBehaviour
             Vector3 rotatedDirection = RotateVector(inputDirection, -45f);
             Vector3 movement=rotatedDirection * moveSpeed * Time.deltaTime;
             // 移动玩家
-            characterController.Move(movement);
+            if(!isMoving)
+                characterController.Move(movement);
+            animator.SetFloat("Horizontal", horizontal);
+            animator.SetFloat("Vertical", vertical);
         }
         // 检测鼠标左键点击
             // 从摄像机发射一条射线到鼠标点击的位置
@@ -96,13 +101,10 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
             return;
         }
-
         // 移动角色
-        //characterController.Move(direction * dashSpeed * Time.deltaTime);
-        transform.position += direction * dashSpeed * Time.deltaTime;
-
-        // 如果角色接近目标位置，停止移动
-        if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+        characterController.Move(direction * dashSpeed * Time.deltaTime);
+        Debug.Log(Vector3.Distance(transform.position, targetPosition));
+        if (Vector3.Distance(transform.position, targetPosition) < 1.1f)
         {
             isMoving = false;
         }

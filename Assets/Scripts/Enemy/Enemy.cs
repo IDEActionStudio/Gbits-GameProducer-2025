@@ -1,14 +1,15 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
+    private float maxMapSize=380f;
+    
     public UnityEvent OnHurt;
     public ItemEffect itemEffect;
     private bool enable09;
-    
-    private ObjectPool pool;
     
     public int moneyAmount;
     public GameObject moneyPrefab;
@@ -22,12 +23,6 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         Item09Effect.OnItem09Effect -= TriggerItem09Effect;
-    }
-
-    // 设置对象池引用
-    public void SetPool(ObjectPool pool)
-    {
-        this.pool = pool;
     }
 
     public virtual void TakeDamage()
@@ -47,20 +42,21 @@ public class Enemy : MonoBehaviour
         if (enable09)
         {
             itemEffect.ApplyEffect();
+            enable09 = false;
         }
         // 回收敌人到对象池
-        if (pool != null)
-        {
-            pool.ReturnObject(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        MyPooler.ObjectPooler.Instance.ReturnToPool("CommonEnemy",gameObject);
+        //Destroy(gameObject);
     }
     
     private void TriggerItem09Effect()
     {
         enable09 = true;
     }
+    
+    /*Vector3 GetRandomPosition()
+    {
+        Vector3 randomPosition = new Vector3(Random.Range(0,maxMapSize), 0, Random.Range(0,maxMapSize));
+        return randomPosition;
+    }*/
 }

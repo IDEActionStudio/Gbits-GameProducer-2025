@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public ObjectPool enemyPool; // 敌人对象池
     public int maxEnemies; // 最大敌人数
+    private float maxMapSize=380f;
 
     void Start()
     {
@@ -16,21 +16,15 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         // 从对象池中获取敌人
-        GameObject enemy = enemyPool.GetObject();
-        enemy.transform.position = GetRandomPosition();
-        enemy.SetActive(true);
-
         // 设置敌人的对象池引用
-        Enemy enemyScript = enemy.GetComponent<Enemy>();
-        if (enemyScript != null)
-        {
-            enemyScript.SetPool(enemyPool);
-        }
+        GameObject enemy= MyPooler.ObjectPooler.Instance.GetFromPool("CommonEnemy",GetRandomPosition(),Quaternion.identity);
+        //enemy.transform.position = GetRandomPosition();
+        enemy.SetActive(true);
     }
-
     Vector3 GetRandomPosition()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(0,380), 0, Random.Range(0,380));
+        Vector3 randomPosition = new Vector3(Random.Range(0,maxMapSize), 0, Random.Range(0,maxMapSize));
         return randomPosition;
     }
+    
 }

@@ -14,7 +14,6 @@ public class EnemyAI : MonoBehaviour
     public EnemyState currentState = EnemyState.Patrol;
     public float detectionRange = 15f; // 检测范围
     public float attackRange = 2f;    // 攻击范围
-    public float moveSpeed = 3f;      // 移动速度
     private Transform player;
     private float lastAttackTime;
     private float attackCooldown=1f;
