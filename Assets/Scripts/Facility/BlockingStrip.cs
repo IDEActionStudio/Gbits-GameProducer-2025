@@ -14,7 +14,7 @@ public class BlockingStrip : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyAI>().Strip();
+            other.gameObject.GetComponent<EnemyAI>().CommonStrip();
         }
     }
     
@@ -22,7 +22,7 @@ public class BlockingStrip : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyAI>().StopStrip();
+            other.gameObject.GetComponent<EnemyAI>().StopCommonStrip();
         }
     }
 }

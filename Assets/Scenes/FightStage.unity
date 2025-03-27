@@ -11916,12 +11916,17 @@ MonoBehaviour:
   pools:
   - tag: CommonEnemy
     prefab: {fileID: 5371501321525750977, guid: 9b1f973d0f8c5544a925bdcf7510749a, type: 3}
-    amount: 20
+    amount: 10
     shouldExpandPool: 0
     extensionLimit: 0
   - tag: ShieldEnemy
     prefab: {fileID: 5371501321525750977, guid: 90d5ed8096b2b504ca2b07b27c8fd677, type: 3}
-    amount: 20
+    amount: 10
+    shouldExpandPool: 0
+    extensionLimit: 0
+  - tag: SlowEnemy
+    prefab: {fileID: 5371501321525750977, guid: bb2ad23a341d75d44aea6e58bb1053ea, type: 3}
+    amount: 10
     shouldExpandPool: 0
     extensionLimit: 0
 --- !u!1001 &1560374827
@@ -17398,11 +17403,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ffb0a4854d889641bfa4f707c44a59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemies: 20
+  maxEnemies: 10
   spawnArea: {x: 380, y: 0, z: 380}
   enemies:
   - {fileID: 5371501321525750977, guid: 9b1f973d0f8c5544a925bdcf7510749a, type: 3}
   - {fileID: 5371501321525750977, guid: 90d5ed8096b2b504ca2b07b27c8fd677, type: 3}
+  - {fileID: 5371501321525750977, guid: bb2ad23a341d75d44aea6e58bb1053ea, type: 3}
 --- !u!1001 &1749827736
 PrefabInstance:
   m_ObjectHideFlags: 0

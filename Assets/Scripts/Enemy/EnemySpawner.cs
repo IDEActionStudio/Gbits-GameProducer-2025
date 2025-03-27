@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -12,9 +13,19 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < maxEnemies; i++)
         {
-            Instantiate(enemies[Random.Range(0, enemies.Count)], GetRandomPosition(), Quaternion.identity);
-            //GameObject commonEnemy= MyPooler.ObjectPooler.Instance.GetFromPool("CommonEnemy",GetRandomPosition() ,Quaternion.identity);
-            //GameObject shieldEnemy= MyPooler.ObjectPooler.Instance.GetFromPool("ShieldEnemy",GetRandomPosition() ,Quaternion.identity);
+            //Instantiate(enemies[Random.Range(0, enemies.Count)], GetRandomPosition(), Quaternion.identity);
+            GameObject commonEnemy= MyPooler.ObjectPooler.Instance.GetFromPool("CommonEnemy", GetRandomPosition(),Quaternion.identity);
+            commonEnemy.name = "CommonEnemy"+i.ToString();
+            if (commonEnemy.GetComponent<NavMeshAgent>() == null)
+                commonEnemy.AddComponent<NavMeshAgent>();
+            GameObject shieldEnemy= MyPooler.ObjectPooler.Instance.GetFromPool("ShieldEnemy",GetRandomPosition() ,Quaternion.identity);
+            shieldEnemy.name = "ShieldEnemy"+i.ToString();
+            if (shieldEnemy.GetComponent<NavMeshAgent>() == null)
+                shieldEnemy.AddComponent<NavMeshAgent>();
+            GameObject slowEnemy=MyPooler.ObjectPooler.Instance.GetFromPool("SlowEnemy",GetRandomPosition() ,Quaternion.identity);
+            slowEnemy.name = "SlowEnemy"+i.ToString();
+            if (slowEnemy.GetComponent<NavMeshAgent>() == null)
+                slowEnemy.AddComponent<NavMeshAgent>();
         }
     }
     Vector3 GetRandomPosition()

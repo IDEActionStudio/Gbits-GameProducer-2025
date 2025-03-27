@@ -5,6 +5,8 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
+    public string poolTag;
+    
     private float maxMapSize=380f;
     
     public UnityEvent OnHurt;
@@ -15,15 +17,20 @@ public class Enemy : MonoBehaviour
     public int moneyAmount;
     public GameObject moneyPrefab;
     private Quaternion moneyRotation = new Quaternion(0.65f, 0.27f, -0.27f, 0.65f);
+    
+    private bool enable01;
+    public GameObject blockingStripPrefab;
 
     protected virtual void OnEnable()
     {
+        Item01Effect.OnItem01Effect += TriggerItem01Effect;
         Item02Effect.OnItem02Effect += IncreaseMoneyDrop;
         Item09Effect.OnItem09Effect += TriggerItem09Effect;
     }
 
     protected virtual void OnDisable()
     {
+        Item01Effect.OnItem01Effect -= TriggerItem01Effect;
         Item02Effect.OnItem02Effect -= IncreaseMoneyDrop;
         Item09Effect.OnItem09Effect -= TriggerItem09Effect;
     }
@@ -44,14 +51,23 @@ public class Enemy : MonoBehaviour
         }
         // 触发死亡动画或效果
         Debug.Log("Enemy Died!");
+        if (enable01)
+        {
+            Instantiate(blockingStripPrefab, transform.position,Quaternion.identity);
+        }
         if (enable09)
         {
             itemEffect.ApplyEffect();
             enable09 = false;
         }
         // 回收敌人到对象池
-        MyPooler.ObjectPooler.Instance.ReturnToPool("CommonEnemy",gameObject);
+        MyPooler.ObjectPooler.Instance.ReturnToPool(poolTag,gameObject);
         //Destroy(gameObject);
+    }
+
+    private void TriggerItem01Effect()
+    {
+        enable01 = true;
     }
     
     private void TriggerItem09Effect()
@@ -63,10 +79,4 @@ public class Enemy : MonoBehaviour
     {
         moneyAmount += 2;
     }
-    
-    /*Vector3 GetRandomPosition()
-    {
-        Vector3 randomPosition = new Vector3(Random.Range(0,maxMapSize), 0, Random.Range(0,maxMapSize));
-        return randomPosition;
-    }*/
 }

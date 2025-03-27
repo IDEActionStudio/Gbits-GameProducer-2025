@@ -1,13 +1,19 @@
+using System;
 using UnityEngine;
 
 public class ShieldEnemy : Enemy
 {
     private bool hasShield;
 
+    private void Start()
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+        
         hasShield = true;
     }
 

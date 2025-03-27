@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4808711247624050135}
   - component: {fileID: 8488441394126142117}
   - component: {fileID: 4969719732392706011}
-  - component: {fileID: 3571867633883510440}
   - component: {fileID: 1590988031605357878}
   m_Layer: 11
   m_Name: ShieldEnemy
@@ -136,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5002709f17fb94398c2cf34429f7d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolTag: ShieldEnemy
   OnHurt:
     m_PersistentCalls:
       m_Calls:
@@ -181,28 +181,7 @@ MonoBehaviour:
   itemEffect: {fileID: 11400000, guid: 398eba39565fa604dbad6342bf582378, type: 2}
   moneyAmount: 15
   moneyPrefab: {fileID: 7691319533779164087, guid: 1bd46efd225042c4a81d71b8e4bc1c09, type: 3}
---- !u!195 &3571867633883510440
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5371501321525750977}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  blockingStripPrefab: {fileID: 4299606980324836750, guid: 53a9eeb13b1f2b441a16c015cd53c1fd, type: 3}
 --- !u!54 &1590988031605357878
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -108,6 +108,16 @@ public class EnemyAI : MonoBehaviour
             Gizmos.DrawLine(transform.position, transform.position + (player.position - transform.position).normalized * detectionRange);
         }
     }
+    
+    public void CommonStrip()
+    {
+        agent.speed *= 0.25f;
+    }
+    public void StopCommonStrip()
+    {
+        agent.speed = 3.5f;
+    }
+    
 
     public void Strip()
     {
@@ -124,5 +134,4 @@ public class EnemyAI : MonoBehaviour
     {
         item01Count++;
     }
-
 }

@@ -38,6 +38,7 @@ public class CityGenerator : MonoBehaviour
     public List<GameObject> buildings = new List<GameObject>();
     
     private NavMeshSurface surface;
+    private LayerMask collisionMask;
 
     public int[,] roadGrid = new int[20, 20]
     {
@@ -80,7 +81,7 @@ public class CityGenerator : MonoBehaviour
         GenerateWeeds(roadGrid);
         GenerateFlowers(roadGrid);
         GenerateCrack(roadGrid);
-        //GenerateNavPoint(roadGrid);
+        //enerateEnemyPoint(roadGrid);
     }
 
     void GenerateRoad(int[,] roadGrid)
@@ -456,8 +457,8 @@ public class CityGenerator : MonoBehaviour
         }
     }
     
-    /*private Dictionary<string,GameObject> navPoints = new Dictionary<string, GameObject>();
-    void GenerateNavPoint(int[,] roadGrid)
+    /*public List<GameObject> enemyPoints = new List<GameObject>();
+    void GenerateEnemyPoint(int[,] roadGrid)
     {
         int width = roadGrid.GetLength(0);
         int height = roadGrid.GetLength(1);
@@ -471,26 +472,20 @@ public class CityGenerator : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    Vector3 navPointPosition = new Vector3(
+                    Vector3 enemyPointPosition = new Vector3(
                         x * roadWidth + Random.Range(-roadWidth / 2f, roadWidth / 2f),
                         0,
                         y * roadLength + Random.Range(-roadLength / 2f, roadLength / 2f));
 
                     // 检测该点是否与模型发生碰撞
-                    if (!Physics.CheckSphere(navPointPosition, 0.1f, collisionMask))
+                    if (!Physics.CheckSphere(enemyPointPosition, 0.1f, collisionMask))
                     {
                         // 如果没有碰撞，生成一个可视化对象来表示导航点
                         GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                        GameObject navPoint = Instantiate(obj, navPointPosition, Quaternion.identity);
-                        navPoint.name = x+"_"+y+"_"+i;
-                        navPoint.tag = "NavPoint";
-                        navPoint.transform.position = navPointPosition;
-                        navPoints.Add(navPoint.name, navPoint);
-                        AStarNode node = new AStarNode(navPoint.transform,x, y, i);
-                        AStarManager.GetInstance().nodes[x, y, i] = node;   
-                    }
+                        GameObject enemyPoint = Instantiate(obj, enemyPointPosition, Quaternion.identity);
+                        enemyPoint.name = x + "_" + y + "_";
+                        enemyPoint.transform.position = enemyPointPosition;
+                        enemyPoints.Add(enemyPoint);
                 }
             }
         }
