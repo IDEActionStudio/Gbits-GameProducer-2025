@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         // 移动角色
         characterController.Move(direction * dashSpeed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, targetPosition) < 1.1f)
+        if (Vector3.Distance(transform.position, targetPosition) < 1.3f)
         {
             isMoving = false;
         }
@@ -197,12 +197,11 @@ public class PlayerController : MonoBehaviour
         // 返回旋转后的向量
         return new Vector3(x, 0, z).normalized;
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (isMoving)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            if (isMoving)
             {
                 other.gameObject.GetComponent<Enemy>().OnHurt.Invoke();
                 canDash = true;

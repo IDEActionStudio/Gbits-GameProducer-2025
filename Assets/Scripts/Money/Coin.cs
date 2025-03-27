@@ -97,8 +97,7 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player entered");
+        {   
             other.gameObject.GetComponent<PlayerCharacter>().money += 1;
             Destroy(gameObject);
         }

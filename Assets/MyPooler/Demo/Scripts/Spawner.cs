@@ -31,7 +31,7 @@ public class Spawner : MonoBehaviour
 
 	Vector3 GetRandomPos()
 	{
-		Vector3 randomPosition = new Vector3(Random.Range(-spawnArea.x / 2, spawnArea.x / 2), 0f, Random.Range(-spawnArea.z / 2, spawnArea.z / 2));
+		Vector3 randomPosition = new Vector3(Random.Range(0, spawnArea.x), 0f, Random.Range(0, spawnArea.z));
 		randomPosition += transform.position;
 		return randomPosition;
 	}

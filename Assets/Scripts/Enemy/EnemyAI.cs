@@ -21,6 +21,8 @@ public class EnemyAI : MonoBehaviour
     private Vector3 lastKnownPlayerPosition;
     private NavMeshAgent agent;
 
+    private int item01Count;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -28,6 +30,17 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
+    private void OnEnable()
+    {
+        Item01Effect.OnItem01Effect += AddItem01Count;
+    }
+
+    private void OnDisable()
+    {
+        Item01Effect.OnItem01Effect -= AddItem01Count;
+    }
+
+    
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
@@ -98,11 +111,18 @@ public class EnemyAI : MonoBehaviour
 
     public void Strip()
     {
-        agent.speed = 1f;
+        for(int i=0;i<item01Count;i++)
+            agent.speed *= 0.75f;
     }
 
     public void StopStrip()
     {
         agent.speed = 3.5f;
     }
+    
+    private void AddItem01Count()
+    {
+        item01Count++;
+    }
+
 }

@@ -1,31 +1,28 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
     public int maxEnemies; // 最大敌人数
-    private float maxMapSize=380f;
+    public Vector3 spawnArea;
+    public List<GameObject> enemies;
 
     void Start()
     {
         for (int i = 0; i < maxEnemies; i++)
         {
-            SpawnEnemy();
+            Instantiate(enemies[Random.Range(0, enemies.Count)], GetRandomPosition(), Quaternion.identity);
+            //GameObject commonEnemy= MyPooler.ObjectPooler.Instance.GetFromPool("CommonEnemy",GetRandomPosition() ,Quaternion.identity);
+            //GameObject shieldEnemy= MyPooler.ObjectPooler.Instance.GetFromPool("ShieldEnemy",GetRandomPosition() ,Quaternion.identity);
         }
-    }
-
-    void SpawnEnemy()
-    {
-        // 从对象池中获取敌人
-        // 设置敌人的对象池引用
-        GameObject enemy= MyPooler.ObjectPooler.Instance.GetFromPool("CommonEnemy",GetRandomPosition(),Quaternion.identity);
-        //enemy.transform.position = GetRandomPosition();
-        enemy.SetActive(true);
     }
     Vector3 GetRandomPosition()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(0,maxMapSize), 0, Random.Range(0,maxMapSize));
-        return randomPosition;
+            Vector3 randomPosition = new Vector3(Random.Range(0, spawnArea.x), 0f, Random.Range(0, spawnArea.z));
+            randomPosition += transform.position;
+            return randomPosition;
+            //Vector3 spawnPosition = new Vector3(200,0,200);
+            //return spawnPosition;
     }
-    
 }
